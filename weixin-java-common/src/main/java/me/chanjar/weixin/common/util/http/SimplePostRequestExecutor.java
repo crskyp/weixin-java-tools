@@ -1,11 +1,12 @@
 package me.chanjar.weixin.common.util.http;
 
-import java.io.IOException;
-
 import jodd.http.HttpRequest;
 import jodd.http.HttpResponse;
 import me.chanjar.weixin.common.bean.result.WxError;
 import me.chanjar.weixin.common.exception.WxErrorException;
+
+import java.io.IOException;
+
 
 /**
  * 简单的POST请求执行器，请求的参数是String, 返回的结果也是String

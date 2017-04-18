@@ -1,19 +1,18 @@
 package me.chanjar.weixin.common.util.http;
 
+import jodd.http.HttpRequest;
+import jodd.http.HttpResponse;
+import me.chanjar.weixin.common.bean.result.WxError;
+import me.chanjar.weixin.common.exception.WxErrorException;
+import me.chanjar.weixin.common.util.fs.FileUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.apache.commons.lang3.StringUtils;
-
-import jodd.http.HttpRequest;
-import jodd.http.HttpResponse;
-import me.chanjar.weixin.common.bean.result.WxError;
-import me.chanjar.weixin.common.exception.WxErrorException;
-import me.chanjar.weixin.common.util.fs.FileUtils;
 
 /**
  * 下载媒体文件请求执行器，请求的参数是String, 返回的结果是File

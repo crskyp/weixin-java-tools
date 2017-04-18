@@ -1,7 +1,5 @@
 package me.chanjar.weixin.mp.util.http;
 
-import java.io.IOException;
-
 import jodd.http.HttpRequest;
 import jodd.http.HttpResponse;
 import me.chanjar.weixin.common.bean.result.WxError;
@@ -9,6 +7,8 @@ import me.chanjar.weixin.common.exception.WxErrorException;
 import me.chanjar.weixin.common.util.http.RequestExecutor;
 import me.chanjar.weixin.mp.bean.material.WxMpMaterialNews;
 import me.chanjar.weixin.mp.util.json.WxMpGsonBuilder;
+
+import java.io.IOException;
 
 public class MaterialNewsInfoRequestExecutor implements RequestExecutor<WxMpMaterialNews, String> {
 

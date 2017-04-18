@@ -1,12 +1,5 @@
 package me.chanjar.weixin.mp.util.http;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URLEncoder;
-import java.util.UUID;
-
 import jodd.http.HttpRequest;
 import jodd.http.HttpResponse;
 import me.chanjar.weixin.common.bean.result.WxError;
@@ -14,6 +7,13 @@ import me.chanjar.weixin.common.exception.WxErrorException;
 import me.chanjar.weixin.common.util.fs.FileUtils;
 import me.chanjar.weixin.common.util.http.RequestExecutor;
 import me.chanjar.weixin.mp.bean.result.WxMpQrCodeTicket;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URLEncoder;
+import java.util.UUID;
 
 /**
  * 获得QrCode图片 请求执行器

@@ -1,9 +1,5 @@
 package me.chanjar.weixin.mp.util.http;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import jodd.http.HttpRequest;
 import jodd.http.HttpResponse;
 import me.chanjar.weixin.common.bean.result.WxError;
@@ -12,6 +8,10 @@ import me.chanjar.weixin.common.util.http.RequestExecutor;
 import me.chanjar.weixin.common.util.json.WxGsonBuilder;
 import me.chanjar.weixin.mp.bean.material.WxMpMaterial;
 import me.chanjar.weixin.mp.bean.material.WxMpMaterialUploadResult;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class MaterialUploadRequestExecutor implements RequestExecutor<WxMpMaterialUploadResult, WxMpMaterial> {
 

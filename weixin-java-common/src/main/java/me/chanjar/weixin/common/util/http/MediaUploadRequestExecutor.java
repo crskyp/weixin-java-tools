@@ -1,13 +1,14 @@
 package me.chanjar.weixin.common.util.http;
 
-import java.io.File;
-import java.io.IOException;
-
 import jodd.http.HttpRequest;
 import jodd.http.HttpResponse;
 import me.chanjar.weixin.common.bean.result.WxError;
 import me.chanjar.weixin.common.bean.result.WxMediaUploadResult;
 import me.chanjar.weixin.common.exception.WxErrorException;
+
+import java.io.File;
+import java.io.IOException;
+
 
 /**
  * 上传媒体文件请求执行器，请求的参数是File, 返回的结果是String
