@@ -1,7 +1,7 @@
 package me.chanjar.weixin.mp.api;
 
 import com.google.inject.Inject;
-import me.chanjar.weixin.common.exception.WxErrorException;
+import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.mp.api.test.ApiTestModule;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.*;
@@ -27,6 +27,12 @@ public class WxMpBaseAPITest {
     String after = configStorage.getAccessToken();
     Assert.assertNotEquals(before, after);
     Assert.assertTrue(StringUtils.isNotBlank(after));
+  }
+
+  public void testJsapiTicket() throws WxErrorException {
+    String jsapiTicket = this.wxService.getJsapiTicket(false);
+    System.out.println(jsapiTicket);
+    Assert.assertNotNull(jsapiTicket);
   }
 
 }

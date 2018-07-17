@@ -1,16 +1,9 @@
-/*
- * KINGSTAR MEDIA SOLUTIONS Co.,LTD. Copyright c 2005-2013. All rights reserved.
- *
- * This source code is the property of KINGSTAR MEDIA SOLUTIONS LTD. It is intended
- * only for the use of KINGSTAR MEDIA application development. Reengineering, reproduction
- * arose from modification of the original source, or other redistribution of this source
- * is not permitted without written permission of the KINGSTAR MEDIA SOLUTIONS LTD.
- */
 package me.chanjar.weixin.mp.util.json;
 
 import com.google.gson.*;
 import me.chanjar.weixin.common.util.json.GsonHelper;
 import me.chanjar.weixin.mp.bean.material.WxMpMaterialNews;
+import org.apache.commons.lang3.BooleanUtils;
 
 import java.lang.reflect.Type;
 
@@ -36,6 +29,16 @@ public class WxMpMaterialNewsArticleGsonAdapter implements JsonSerializer<WxMpMa
     articleJson.addProperty("show_cover_pic", article.isShowCoverPic() ? "1" : "0");
     if (null != article.getUrl()) {
       articleJson.addProperty("url", article.getUrl());
+    }
+
+    if (null != article.getNeedOpenComment()) {
+      articleJson.addProperty("need_open_comment",
+        BooleanUtils.toInteger(article.getNeedOpenComment(), 1, 0));
+    }
+
+    if (null != article.getOnlyFansCanComment()) {
+      articleJson.addProperty("only_fans_can_comment",
+        BooleanUtils.toInteger(article.getOnlyFansCanComment(), 1, 0));
     }
     return articleJson;
   }
@@ -80,6 +83,16 @@ public class WxMpMaterialNewsArticleGsonAdapter implements JsonSerializer<WxMpMa
     JsonElement url = articleInfo.get("url");
     if (url != null && !url.isJsonNull()) {
       article.setUrl(GsonHelper.getAsString(url));
+    }
+
+    JsonElement needOpenComment = articleInfo.get("need_open_comment");
+    if (needOpenComment != null && !needOpenComment.isJsonNull()) {
+      article.setNeedOpenComment(GsonHelper.getAsBoolean(needOpenComment));
+    }
+
+    JsonElement onlyFansCanComment = articleInfo.get("only_fans_can_comment");
+    if (onlyFansCanComment != null && !onlyFansCanComment.isJsonNull()) {
+      article.setOnlyFansCanComment(GsonHelper.getAsBoolean(onlyFansCanComment));
     }
     return article;
   }

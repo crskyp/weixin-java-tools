@@ -1,7 +1,7 @@
 package me.chanjar.weixin.mp.api;
 
 import me.chanjar.weixin.common.bean.WxAccessToken;
-import me.chanjar.weixin.common.util.http.ApacheHttpClientBuilder;
+import me.chanjar.weixin.common.util.http.apache.ApacheHttpClientBuilder;
 
 import java.io.File;
 import java.util.concurrent.locks.Lock;
@@ -84,6 +84,8 @@ public interface WxMpConfigStorage {
   String getToken();
 
   String getAesKey();
+
+  String getTemplateId();
 
   long getExpiresTime();
 

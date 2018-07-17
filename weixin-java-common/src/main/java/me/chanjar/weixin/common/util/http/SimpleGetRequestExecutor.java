@@ -1,37 +1,32 @@
 package me.chanjar.weixin.common.util.http;
 
-import jodd.http.HttpRequest;
-import jodd.http.HttpResponse;
-import me.chanjar.weixin.common.bean.result.WxError;
-import me.chanjar.weixin.common.exception.WxErrorException;
-
-import java.io.IOException;
-
+import me.chanjar.weixin.common.util.http.apache.ApacheHttpClientSimpleGetRequestExecutor;
+import me.chanjar.weixin.common.util.http.jodd.JoddHttpSimpleGetRequestExecutor;
+import me.chanjar.weixin.common.util.http.okhttp.OkHttpSimpleGetRequestExecutor;
 
 /**
  * 简单的GET请求执行器，请求的参数是String, 返回的结果也是String
  *
  * @author Daniel Qian
  */
-public class SimpleGetRequestExecutor implements RequestExecutor<String, String> {
+public abstract class SimpleGetRequestExecutor<H, P> implements RequestExecutor<String, String> {
+  protected RequestHttp<H, P> requestHttp;
 
-  @Override
-  public String execute(String uri, String queryParam) throws WxErrorException, IOException {
-    if (queryParam != null) {
-      if (uri.indexOf('?') == -1) {
-        uri += '?';
-      }
-      uri += uri.endsWith("?") ? queryParam : '&' + queryParam;
-    }
+  public SimpleGetRequestExecutor(RequestHttp<H, P> requestHttp) {
+    this.requestHttp = requestHttp;
+  }
 
-    HttpRequest httpRequest = HttpRequest.post(uri);
-    HttpResponse response = httpRequest.send();
-    String responseContent = response.bodyText();
-    WxError error = WxError.fromJson(responseContent);
-    if (error.getErrorCode() != 0) {
-      throw new WxErrorException(error);
+  public static RequestExecutor<String, String> create(RequestHttp requestHttp) {
+    switch (requestHttp.getRequestType()) {
+      case APACHE_HTTP:
+        return new ApacheHttpClientSimpleGetRequestExecutor(requestHttp);
+      case JODD_HTTP:
+        return new JoddHttpSimpleGetRequestExecutor(requestHttp);
+      case OK_HTTP:
+        return new OkHttpSimpleGetRequestExecutor(requestHttp);
+      default:
+        throw new IllegalArgumentException("非法请求参数");
     }
-    return responseContent;
   }
 
 }

@@ -2,7 +2,7 @@ package me.chanjar.weixin.mp.api;
 
 import me.chanjar.weixin.common.bean.WxAccessToken;
 import me.chanjar.weixin.common.util.ToStringUtils;
-import me.chanjar.weixin.common.util.http.ApacheHttpClientBuilder;
+import me.chanjar.weixin.common.util.http.apache.ApacheHttpClientBuilder;
 
 import java.io.File;
 import java.util.concurrent.locks.Lock;
@@ -18,6 +18,7 @@ public class WxMpInMemoryConfigStorage implements WxMpConfigStorage {
   protected volatile String appId;
   protected volatile String secret;
   protected volatile String token;
+  protected volatile String templateId;
   protected volatile String accessToken;
   protected volatile String aesKey;
   protected volatile long expiresTime;
@@ -51,6 +52,10 @@ public class WxMpInMemoryConfigStorage implements WxMpConfigStorage {
     return this.accessToken;
   }
 
+  public void setAccessToken(String accessToken) {
+    this.accessToken = accessToken;
+  }
+
   @Override
   public Lock getAccessTokenLock() {
     return this.accessTokenLock;
@@ -82,6 +87,10 @@ public class WxMpInMemoryConfigStorage implements WxMpConfigStorage {
     return this.jsapiTicket;
   }
 
+  public void setJsapiTicket(String jsapiTicket) {
+    this.jsapiTicket = jsapiTicket;
+  }
+
   @Override
   public Lock getJsapiTicketLock() {
     return this.jsapiTicketLock;
@@ -110,6 +119,10 @@ public class WxMpInMemoryConfigStorage implements WxMpConfigStorage {
   @Override
   public String getCardApiTicket() {
     return this.cardApiTicket;
+  }
+
+  public void setCardApiTicket(String cardApiTicket) {
+    this.cardApiTicket = cardApiTicket;
   }
 
   @Override
@@ -159,6 +172,15 @@ public class WxMpInMemoryConfigStorage implements WxMpConfigStorage {
 
   public void setToken(String token) {
     this.token = token;
+  }
+
+  @Override
+  public String getTemplateId() {
+    return this.templateId;
+  }
+
+  public void setTemplateId(String templateId) {
+    this.templateId = templateId;
   }
 
   @Override
@@ -247,24 +269,12 @@ public class WxMpInMemoryConfigStorage implements WxMpConfigStorage {
     this.apacheHttpClientBuilder = apacheHttpClientBuilder;
   }
 
-  public void setAccessToken(String accessToken) {
-    this.accessToken = accessToken;
-  }
-
-  public void setJsapiTicket(String jsapiTicket) {
-    this.jsapiTicket = jsapiTicket;
-  }
-
   public long getJsapiTicketExpiresTime() {
     return this.jsapiTicketExpiresTime;
   }
 
   public void setJsapiTicketExpiresTime(long jsapiTicketExpiresTime) {
     this.jsapiTicketExpiresTime = jsapiTicketExpiresTime;
-  }
-
-  public void setCardApiTicket(String cardApiTicket) {
-    this.cardApiTicket = cardApiTicket;
   }
 
   public long getCardApiTicketExpiresTime() {
